@@ -2,6 +2,7 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_comments
   has_many :favorites
+  has_many :favorited_users, through: :favorites, source: :user
   
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
