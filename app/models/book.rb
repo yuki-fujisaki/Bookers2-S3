@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   has_many :book_comments
   has_many :favorites
   has_many :favorited_users, through: :favorites, source: :user
+
+  # 閲覧数
   has_many :view_counts, dependent: :destroy
   
   validates :title,presence:true
