@@ -84,7 +84,57 @@
           </tr>
         </tbody>
       </table>
-
+      <canvas id="myChart"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+      var ctx = document.getElementById('myChart');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+              datasets: [{
+                  label: '投稿した本の数',
+                  data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count%>],
+                  backgroundColor: [
+                    'rgba(1, 100, 200, 1)',
+                    'rgba(1, 100, 200, 1)',
+                    'rgba(1, 100, 200, 1)',
+                    'rgba(1, 100, 200, 1)',
+                    'rgba(1, 100, 200, 1)',
+                    'rgba(1, 100, 200, 1)',
+                  ],
+                  borderColor: [
+                      'rgba(1, 100, 200, 1)',
+                      'rgba(1, 100, 200, 1)',
+                      'rgba(1, 100, 200, 1)',
+                      'rgba(1, 100, 200, 1)',
+                      'rgba(1, 100, 200, 1)',
+                      'rgba(1, 100, 200, 1)',
+                  ],
+                  borderWidth: 5
+              }]
+          },
+              options: {
+                title: {
+                  display: true,
+                  text: '7日間の投稿数の比較'
+                },
+                scales: {
+                  y: {
+                    max: 10,
+                    min: 0,
+                    ticks: {
+                      stepSize: 1,
+                      callback: function(value, index, values){
+                        return  value
+                      }
+                    }
+                  }
+                },
+              }
+      });
+      </script>
+      
     </div>
   </div>
 </div>
