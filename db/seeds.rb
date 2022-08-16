@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+20.times do |n|
+    Book.create(
+      user_id: 2,
+      title: "test#{n}",
+      body: "test_place#{n}",
+      created_at: (rand*10).days.ago
+    )
+  end
