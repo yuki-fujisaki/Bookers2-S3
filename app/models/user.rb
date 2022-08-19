@@ -42,6 +42,21 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.search(search,word)
+    if search == "forward_match"
+      users = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      users = User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      users = User.where(name: "#{word}")
+    elsif search == "partial_match"
+      users = User.where("name LIKE?","%#{word}%")
+    else
+      users = User.all
+    end
+    return users
+  end
+
   def get_profile_image(weight, height)
     unless self.profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
