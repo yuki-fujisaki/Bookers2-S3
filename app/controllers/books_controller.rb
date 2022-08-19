@@ -8,7 +8,14 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    if params[:sort] == "day"
+      @books = Book.day
+    elsif params[:sort] == "star"
+      @books = Book.star
+    else
+      @books = Book.all
+    end
+    
     @book = Book.new
   end
 
