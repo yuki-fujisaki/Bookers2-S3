@@ -10,6 +10,7 @@ class Book < ApplicationRecord
   
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  validates :tag ,presence: true
 
   scope :day, -> {order(created_at: :desc)}
   scope :star, ->{order(star: :desc)}

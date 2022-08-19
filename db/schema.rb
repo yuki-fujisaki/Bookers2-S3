@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_08_19_035418) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "star", default: 0.0, null: false
+    t.string "tag"
   end
 
   create_table "entries", force: :cascade do |t|
